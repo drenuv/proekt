@@ -1,0 +1,51 @@
+﻿<Page x:Class="store.page.User"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:store.page"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="User" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="203*"/>
+            <ColumnDefinition Width="597*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="personal account" FontSize="32" Grid.ColumnSpan="2"/>
+
+        <TextBlock Grid.Row="1" Text="Name*" FontSize="20"  />
+        <TextBox Text="{Binding name}" Grid.Row="1" Grid.Column="1" Name="Txt_name" Margin="0 10 10 10"/>
+
+        <TextBlock Grid.Row="2" Text="e-mail*" FontSize="20"  />
+        <TextBox Text="{Binding e_mail}" Grid.Row="2" Grid.Column="1" Name="Txt_mail" Margin="0 10 10 10"/>
+
+        <TextBlock Grid.Row="3" Text="phone" FontSize="20"  />
+        <TextBox Text="{Binding phone}" Grid.Row="3" Grid.Column="1" Name="Txt_phone" Margin="0 10 10 10"/>
+
+        <TextBlock Grid.Row="4" Text="data birthday" FontSize="20" />
+        <DatePicker SelectedDate="{Binding birthday}" Name="data_bithday" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Width="160" HorizontalAlignment="Left" Height="30" Margin="0,10" />
+
+
+        <TextBlock Grid.Row="5" Text="Gender" FontSize="20" Height="26"  />
+        <ComboBox DisplayMemberPath="gender1" SelectedItem="{Binding Gender1}" Grid.Row="5" Grid.Column="1" Name="cmb_Gender" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" FontSize="15" Width="150"/>
+
+      
+
+        <Button  Grid.Row="7" Content="Save Change" Name="btn_save" Click="Btn_save_Click"  Grid.ColumnSpan="2" Margin="-200 0 0 0"/>
+        <Button  Grid.Row="7" Content="New password" Name="btn_new_pas" Click="Btn_new_pas_Click"  Grid.ColumnSpan="2" Margin="200 0 0 0"/>
+
+    </Grid>
+</Page>

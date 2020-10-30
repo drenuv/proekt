@@ -1,0 +1,45 @@
+﻿<Page x:Class="store.page.StorageEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:store.page"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StorageEdit" Background="White">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="203*"/>
+            <ColumnDefinition Width="597*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal"  Grid.Column="1" >
+            <TextBox  Text="{Binding Products.id_product}" Grid.Row="0" Grid.Column="1" Width="90" Height="30" HorizontalAlignment="Left" LostFocus="Txt_id_LostFocus" Name="Txt_id" Margin="0 10 10 10"/>
+            <TextBlock Name="txt_name"  Grid.Column="1"/>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Text="id product" FontSize="20"  />
+        
+        <TextBlock Grid.Row="1" Text="amount" FontSize="20"  />
+        <TextBox Height="60" LostFocus="Txt_id_LostFocus" Text="{Binding amount}" Grid.Row="1" Grid.Column="1" Name="Txt_amount" Margin="0 10 10 10"/>
+
+        <TextBlock Grid.Row="2" Text="data delivery" FontSize="20" />
+        <DatePicker SelectedDate="{Binding data_delivery}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Width="160" HorizontalAlignment="Left" Height="30" Margin="0,10" />
+
+
+
+
+
+
+        <Button  Grid.Row="7" Content="Save Change" Name="btn_save" Click="Btn_save_Click"  Grid.ColumnSpan="2" Margin="-200 0 0 0"/>
+
+    </Grid>
+</Page>

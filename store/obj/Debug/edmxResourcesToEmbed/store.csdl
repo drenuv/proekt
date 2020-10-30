@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="electronic_shopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="electronic_shopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Deal_product" EntityType="electronic_shopModel.Deal_product" />
+    <EntitySet Name="Deals" EntityType="electronic_shopModel.Deals" />
+    <EntitySet Name="Gender" EntityType="electronic_shopModel.Gender" />
+    <EntitySet Name="Manufacturers" EntityType="electronic_shopModel.Manufacturers" />
+    <EntitySet Name="Products" EntityType="electronic_shopModel.Products" />
+    <EntitySet Name="Status_deal" EntityType="electronic_shopModel.Status_deal" />
+    <EntitySet Name="Storage" EntityType="electronic_shopModel.Storage" />
+    <EntitySet Name="sysdiagrams" EntityType="electronic_shopModel.sysdiagrams" />
+    <EntitySet Name="Type_electronic" EntityType="electronic_shopModel.Type_electronic" />
+    <EntitySet Name="Type_products" EntityType="electronic_shopModel.Type_products" />
+    <EntitySet Name="User_type" EntityType="electronic_shopModel.User_type" />
+    <EntitySet Name="Users" EntityType="electronic_shopModel.Users" />
+    <AssociationSet Name="FK_Deal_product_Deals" Association="electronic_shopModel.FK_Deal_product_Deals">
+      <End Role="Deals" EntitySet="Deals" />
+      <End Role="Deal_product" EntitySet="Deal_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_product_Products" Association="electronic_shopModel.FK_Deal_product_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Deal_product" EntitySet="Deal_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deals_Status_deal" Association="electronic_shopModel.FK_Deals_Status_deal">
+      <End Role="Status_deal" EntitySet="Status_deal" />
+      <End Role="Deals" EntitySet="Deals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deals_Users" Association="electronic_shopModel.FK_Deals_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Deals" EntitySet="Deals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Gender" Association="electronic_shopModel.FK_Users_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Manufacturers" Association="electronic_shopModel.FK_Products_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Storage_Products" Association="electronic_shopModel.FK_Storage_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Storage" EntitySet="Storage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Type_products_Products" Association="electronic_shopModel.FK_Type_products_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Type_products" EntitySet="Type_products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Type_products_Type_electronic" Association="electronic_shopModel.FK_Type_products_Type_electronic">
+      <End Role="Type_electronic" EntitySet="Type_electronic" />
+      <End Role="Type_products" EntitySet="Type_products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_User_type" Association="electronic_shopModel.FK_Users_User_type">
+      <End Role="User_type" EntitySet="User_type" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Deal_product">
+    <Key>
+      <PropertyRef Name="id_deal_product" />
+    </Key>
+    <Property Name="id_deal_product" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="deal" Type="Int64" Nullable="false" />
+    <Property Name="product" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Deals" Relationship="electronic_shopModel.FK_Deal_product_Deals" FromRole="Deal_product" ToRole="Deals" />
+    <NavigationProperty Name="Products" Relationship="electronic_shopModel.FK_Deal_product_Products" FromRole="Deal_product" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Deals">
+    <Key>
+      <PropertyRef Name="id_deal" />
+    </Key>
+    <Property Name="id_deal" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date_deal" Type="DateTime" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="users" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Deal_product" Relationship="electronic_shopModel.FK_Deal_product_Deals" FromRole="Deals" ToRole="Deal_product" />
+    <NavigationProperty Name="Status_deal" Relationship="electronic_shopModel.FK_Deals_Status_deal" FromRole="Deals" ToRole="Status_deal" />
+    <NavigationProperty Name="Users1" Relationship="electronic_shopModel.FK_Deals_Users" FromRole="Deals" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="id_gender" />
+    </Key>
+    <Property Name="id_gender" Type="Int32" Nullable="false" />
+    <Property Name="gender1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="electronic_shopModel.FK_Users_Gender" FromRole="Gender" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Manufacturers">
+    <Key>
+      <PropertyRef Name="id_manufacturer" />
+    </Key>
+    <Property Name="id_manufacturer" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="electronic_shopModel.FK_Products_Manufacturers" FromRole="Manufacturers" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="id_product" />
+    </Key>
+    <Property Name="id_product" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="manufacturer" Type="Int64" Nullable="false" />
+    <Property Name="barcode" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="name_product" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Deal_product" Relationship="electronic_shopModel.FK_Deal_product_Products" FromRole="Products" ToRole="Deal_product" />
+    <NavigationProperty Name="Manufacturers" Relationship="electronic_shopModel.FK_Products_Manufacturers" FromRole="Products" ToRole="Manufacturers" />
+    <NavigationProperty Name="Storage" Relationship="electronic_shopModel.FK_Storage_Products" FromRole="Products" ToRole="Storage" />
+    <NavigationProperty Name="Type_products" Relationship="electronic_shopModel.FK_Type_products_Products" FromRole="Products" ToRole="Type_products" />
+  </EntityType>
+  <EntityType Name="Status_deal">
+    <Key>
+      <PropertyRef Name="id_status_deal" />
+    </Key>
+    <Property Name="id_status_deal" Type="Int32" Nullable="false" />
+    <Property Name="status_deal1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Deals" Relationship="electronic_shopModel.FK_Deals_Status_deal" FromRole="Status_deal" ToRole="Deals" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="id_storage" />
+    </Key>
+    <Property Name="id_storage" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product" Type="Int64" Nullable="false" />
+    <Property Name="data_delivery" Type="DateTime" Nullable="false" />
+    <Property Name="amount" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="electronic_shopModel.FK_Storage_Products" FromRole="Storage" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Type_electronic">
+    <Key>
+      <PropertyRef Name="id_type_electronic" />
+    </Key>
+    <Property Name="id_type_electronic" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type_electronic1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Type_products" Relationship="electronic_shopModel.FK_Type_products_Type_electronic" FromRole="Type_electronic" ToRole="Type_products" />
+  </EntityType>
+  <EntityType Name="Type_products">
+    <Key>
+      <PropertyRef Name="id_type_products" />
+    </Key>
+    <Property Name="id_type_products" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product" Type="Int64" Nullable="false" />
+    <Property Name="type" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="electronic_shopModel.FK_Type_products_Products" FromRole="Type_products" ToRole="Products" />
+    <NavigationProperty Name="Type_electronic" Relationship="electronic_shopModel.FK_Type_products_Type_electronic" FromRole="Type_products" ToRole="Type_electronic" />
+  </EntityType>
+  <EntityType Name="User_type">
+    <Key>
+      <PropertyRef Name="id_type" />
+    </Key>
+    <Property Name="id_type" Type="Int32" Nullable="false" />
+    <Property Name="type_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="electronic_shopModel.FK_Users_User_type" FromRole="User_type" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="e_mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Int32" Nullable="false" />
+    <Property Name="data_registration" Type="DateTime" Nullable="false" />
+    <Property Name="birthday" Type="DateTime" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Deals" Relationship="electronic_shopModel.FK_Deals_Users" FromRole="Users" ToRole="Deals" />
+    <NavigationProperty Name="Gender1" Relationship="electronic_shopModel.FK_Users_Gender" FromRole="Users" ToRole="Gender" />
+    <NavigationProperty Name="User_type" Relationship="electronic_shopModel.FK_Users_User_type" FromRole="Users" ToRole="User_type" />
+  </EntityType>
+  <Association Name="FK_Deal_product_Deals">
+    <End Type="electronic_shopModel.Deals" Role="Deals" Multiplicity="1" />
+    <End Type="electronic_shopModel.Deal_product" Role="Deal_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deals">
+        <PropertyRef Name="id_deal" />
+      </Principal>
+      <Dependent Role="Deal_product">
+        <PropertyRef Name="deal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_product_Products">
+    <End Type="electronic_shopModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="electronic_shopModel.Deal_product" Role="Deal_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="Deal_product">
+        <PropertyRef Name="product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deals_Status_deal">
+    <End Type="electronic_shopModel.Status_deal" Role="Status_deal" Multiplicity="1" />
+    <End Type="electronic_shopModel.Deals" Role="Deals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status_deal">
+        <PropertyRef Name="id_status_deal" />
+      </Principal>
+      <Dependent Role="Deals">
+        <PropertyRef Name="status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deals_Users">
+    <End Type="electronic_shopModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="electronic_shopModel.Deals" Role="Deals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Deals">
+        <PropertyRef Name="users" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Gender">
+    <End Type="electronic_shopModel.Gender" Role="Gender" Multiplicity="1" />
+    <End Type="electronic_shopModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="id_gender" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Manufacturers">
+    <End Type="electronic_shopModel.Manufacturers" Role="Manufacturers" Multiplicity="1" />
+    <End Type="electronic_shopModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id_manufacturer" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="manufacturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Storage_Products">
+    <End Type="electronic_shopModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="electronic_shopModel.Storage" Role="Storage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="Storage">
+        <PropertyRef Name="product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Type_products_Products">
+    <End Type="electronic_shopModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="electronic_shopModel.Type_products" Role="Type_products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="Type_products">
+        <PropertyRef Name="product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Type_products_Type_electronic">
+    <End Type="electronic_shopModel.Type_electronic" Role="Type_electronic" Multiplicity="1" />
+    <End Type="electronic_shopModel.Type_products" Role="Type_products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_electronic">
+        <PropertyRef Name="id_type_electronic" />
+      </Principal>
+      <Dependent Role="Type_products">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_User_type">
+    <End Type="electronic_shopModel.User_type" Role="User_type" Multiplicity="1" />
+    <End Type="electronic_shopModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_type">
+        <PropertyRef Name="id_type" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

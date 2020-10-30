@@ -1,0 +1,52 @@
+﻿<Page x:Class="store.page.Basket"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:store.page"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Basket" Background="White" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+
+      
+
+        <DataGrid Grid.Row="0" Name="dtg_basket" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding name_product}" />
+                <DataGridTextColumn Header="price" Width="*" Binding="{Binding price}" />
+                <DataGridTextColumn Header="Manufacter" Width="*" Binding="{Binding Manufacturers.name}" />
+                <DataGridTemplateColumn Width="*" Header="Image">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="5">
+                                <Image.Source>
+                                    <Binding Path="image"/>
+                                </Image.Source>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btn_del" Click="Btn_del_Click" Content="del product"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="1" Content="Confirm order" Name="btn_done" Click="Btn_done_Click" HorizontalAlignment="Left"/>
+        <Button Grid.Row="1" Content="clear basket" Name="btn_clear" Click="Btn_clear_Click" HorizontalAlignment="Right"/>
+
+        
+    </Grid>
+</Page>
